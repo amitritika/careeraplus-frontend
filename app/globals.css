@@ -1,18 +1,20 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
 
+/* Design tokens (CSS variables) */
 :root {
-  --bg: #0b1020;
-  --card: #0f172a;
-  --fg: #e5e7eb;
-  --muted: #94a3b8;
+  --brand-600: 36 135 206;    /* #2487CE */
+  --brand-500: 49 148 219;    /* #3194DB */
+
+  --surface:   255 255 255;
+  --surface-2: 248 251 254;
+  --text:        2   6  23;
+
+  --radius-xl:  .75rem;
+  --radius-2xl: 1rem;
+
+  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.10), 0 2px 4px -2px rgb(0 0 0 / 0.10);
 }
 
-html, body, #__next { height: 100%; }
-
-body {
-  @apply bg-slate-900 text-slate-100;
-}
-
-a { @apply text-brand-400 hover:text-brand-300; }
+html, body { height: 100%; }
+body { color: rgb(var(--text)); background: rgb(var(--surface-2)); }
