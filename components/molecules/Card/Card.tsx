@@ -1,15 +1,23 @@
 export default function Card({
-  title, actions, children,
-}: { title?: string; actions?: React.ReactNode; children: React.ReactNode }) {
+  title,
+  actions,
+  children,
+  className = ''
+}: {
+  title?: string;
+  actions?: React.ReactNode;
+  children: React.ReactNode;
+  className?: string;
+}) {
   return (
-    <div className="rounded-[var(--radius-2xl)] border border-slate-200 shadow-md p-5 bg-white/90">
-      {(title || actions) && (
-        <div className="mb-4 flex items-center justify-between">
-          {title && <h3 className="text-lg font-semibold">{title}</h3>}
-          {actions}
-        </div>
+    <div className={`bg-white rounded-lg shadow-md p-8 ${className}`}>
+      {title && (
+        <h2 className="text-2xl font-bold text-slate-900 mb-6 text-center">
+          {title}
+        </h2>
       )}
       {children}
+      {actions && <div className="mt-4">{actions}</div>}
     </div>
   );
 }

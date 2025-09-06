@@ -1,6 +1,10 @@
-import AuthLayout from '@/components/templates/AuthLayout';
+import NoAuth from '@/components/templates/NoAuth';
 import SignupForm from '@/components/organisms/SignupForm';
 
-export default function Page() {
-  return <AuthLayout title="Join CareerPlus"><SignupForm /></AuthLayout>;
+export default function SignupPage() {
+  return (
+    <NoAuth>
+      <SignupForm />
+    </NoAuth>
+  );
 }

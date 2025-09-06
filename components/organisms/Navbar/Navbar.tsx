@@ -35,19 +35,7 @@ export default function Navbar() {
 
       // NEW: fetch public profile to get base64 photo -> set data URL
       if (u?.username) {
-        try {
-          const pub = await apiFetch<any>(`/api/user/public-profile/${u.username}`, { method: 'GET' });
-          const contentType = pub?.profile_photo?.contentType as string | undefined;
-          const base64 = pub?.profile_photo?.data as string | undefined;
-
-          if (contentType && base64) {
-            setAvatarSrc(`data:${contentType};base64,${base64}`);
-          } else {
-            setAvatarSrc(null); // will fall back to initials/logo below
-          }
-        } catch {
-          setAvatarSrc(null);
-        }
+        setAvatarSrc(`${API_BASE}/api/user/photo/${encodeURIComponent(u.username)}`);
       } else {
         setAvatarSrc(null);
       }
@@ -159,9 +147,9 @@ export default function Navbar() {
                   />
                 ) : null}
                 {/* Initials fallback layer (shown if img hidden) */}
-                <span className="absolute inset-0 grid place-items-center text-xs font-semibold text-slate-700">
+                {avatarSrc == null ? (<span className="absolute inset-0 grid place-items-center text-xs font-semibold text-slate-700">
                   {initials}
-                </span>
+                </span>) : null}
               </button>
 
               {/* Dropdown */}

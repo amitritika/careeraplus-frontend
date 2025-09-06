@@ -1,6 +1,10 @@
-import AuthLayout from '@/components/templates/AuthLayout';
+import NoAuth from '@/components/templates/NoAuth';
 import LoginForm from '@/components/organisms/LoginForm';
 
-export default function Page() {
-  return <AuthLayout title="Welcome back"><LoginForm /></AuthLayout>;
+export default function LoginPage() {
+  return (
+    <NoAuth>
+      <LoginForm />
+    </NoAuth>
+  );
 }

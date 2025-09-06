@@ -1,44 +1,44 @@
+// app/feed/page.tsx
 'use client';
+
 import React from 'react';
-import { useRouter } from 'next/navigation';
-import { apiFetch } from '@/lib/api';
-import DashboardLayout from '@/components/templates/DashboardLayout';
+import AuthProtected from '@/components/templates/AuthProtected';
 import Card from '@/components/molecules/Card';
 import Button from '@/components/atoms/Button';
 
 export default function FeedPage() {
-  const router = useRouter();
-  const [state, setState] = React.useState<{ loading: boolean; user?: any; error?: string }>({ loading: true });
-
-  React.useEffect(() => {
-    (async () => {
-      try {
-        const user = await apiFetch('/api/user/profile', { method: 'GET' });
-        setState({ loading: false, user });
-      } catch (e: any) {
-        setState({ loading: false, error: e.message || 'Unauthorized' });
-        router.replace('/login');
-      }
-    })();
-  }, [router]);
-
-  if (state.loading) return <p>Loading feed…</p>;
-
   return (
-    <DashboardLayout>
-      <div className="grid md:grid-cols-3 gap-4">
-        <Card title={`Hi, ${state.user?.name || state.user?.username || 'there'}`} actions={<Button size="sm">Refresh</Button>}>
-          <p className="text-sm text-slate-600">Welcome to your dashboard.</p>
-        </Card>
-        <Card title="Recent Activity">
-          <ul className="text-sm space-y-2">
-            <li>• User signed up</li>
-            <li>• Profile updated</li>
-            <li>• Admin created a tag</li>
-          </ul>
-        </Card>
-        <Card title="Notes"><p className="text-sm">Replace with your widgets.</p></Card>
-      </div>
-    </DashboardLayout>
+    <AuthProtected>
+      {(user) => (
+        <div className="max-w-7xl mx-auto px-4 py-6">
+          <div className="space-y-6">
+            <div className="bg-white overflow-hidden shadow rounded-lg">
+              <div className="px-4 py-5 sm:p-6">
+                <h1 className="text-2xl font-bold text-gray-900 mb-4">
+                  Welcome back, {user.name || user.username}!
+                </h1>
+                <p className="text-gray-600">Welcome to your dashboard.</p>
+                <div className="mt-4 text-sm text-gray-500">
+                  <p>Email: {user.email}</p>
+                  <p>Role: {user.role === 1 ? 'Admin' : 'User'}</p>
+                </div>
+              </div>
+            </div>
+
+            <Card>
+              <div className="p-6">
+                <h2 className="text-lg font-medium text-gray-900 mb-4">
+                  Your Dashboard
+                </h2>
+                <p className="text-gray-600 mb-4">
+                  Replace with your widgets.
+                </p>
+                <Button>Get Started</Button>
+              </div>
+            </Card>
+          </div>
+        </div>
+      )}
+    </AuthProtected>
   );
 }
