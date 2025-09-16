@@ -1,0 +1,225 @@
+/* BlogForm Component Styles */
+
+.blog-form-container {
+  min-height: 100vh;
+  background: linear-gradient(135deg, white 0%, rgba(219, 234, 254, 0.3) 50%, rgba(233, 213, 255, 0.3) 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Background Elements */
+.blog-form-bg-orb-1 {
+  position: absolute;
+  top: -10rem;
+  left: -10rem;
+  width: 20rem;
+  height: 20rem;
+  background: linear-gradient(135deg, rgba(59, 130, 246, 0.2), rgba(147, 51, 234, 0.2));
+  border-radius: 50%;
+  filter: blur(3rem);
+}
+
+.blog-form-bg-orb-2 {
+  position: absolute;
+  bottom: -10rem;
+  right: -10rem;
+  width: 20rem;
+  height: 20rem;
+  background: linear-gradient(135deg, rgba(147, 51, 234, 0.2), rgba(236, 72, 153, 0.2));
+  border-radius: 50%;
+  filter: blur(3rem);
+}
+
+.blog-form-bg-orb-3 {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 24rem;
+  height: 24rem;
+  background: linear-gradient(135deg, rgba(96, 165, 250, 0.1), rgba(196, 181, 253, 0.1));
+  border-radius: 50%;
+  filter: blur(3rem);
+}
+
+/* Fixed Grid Pattern */
+.blog-form-grid-pattern {
+  position: absolute;
+  inset: 0;
+  opacity: 0.4;
+  background-image: radial-gradient(circle at 1px 1px, rgba(156, 146, 172, 0.03) 1px, transparent 0);
+  background-size: 60px 60px;
+}
+
+/* TipTap Editor Styles */
+.blog-form-editor .ProseMirror {
+  outline: none !important;
+  padding: 1rem;
+  min-height: 400px;
+  font-size: 1.125rem;
+  line-height: 1.75;
+  color: rgb(55, 65, 81);
+}
+
+.blog-form-editor .ProseMirror p.is-editor-empty:first-child::before {
+  color: rgb(156, 163, 175);
+  content: attr(data-placeholder);
+  float: left;
+  height: 0;
+  pointer-events: none;
+}
+
+.blog-form-editor .ProseMirror p {
+  margin: 1rem 0;
+}
+
+.blog-form-editor .ProseMirror p:first-child {
+  margin-top: 0;
+}
+
+.blog-form-editor .ProseMirror p:last-child {
+  margin-bottom: 0;
+}
+
+.blog-form-editor .ProseMirror h1,
+.blog-form-editor .ProseMirror h2,
+.blog-form-editor .ProseMirror h3 {
+  font-weight: 600;
+  margin: 2rem 0 1rem 0;
+  line-height: 1.25;
+}
+
+.blog-form-editor .ProseMirror h1:first-child,
+.blog-form-editor .ProseMirror h2:first-child,
+.blog-form-editor .ProseMirror h3:first-child {
+  margin-top: 0;
+}
+
+.blog-form-editor .ProseMirror h1 {
+  font-size: 2rem;
+  color: rgb(31, 41, 55);
+}
+
+.blog-form-editor .ProseMirror h2 {
+  font-size: 1.5rem;
+  color: rgb(55, 65, 81);
+}
+
+.blog-form-editor .ProseMirror h3 {
+  font-size: 1.25rem;
+  color: rgb(75, 85, 99);
+}
+
+.blog-form-editor .ProseMirror blockquote {
+  border-left: 4px solid rgb(96, 165, 250);
+  margin: 1.5rem 0;
+  padding-left: 1rem;
+  font-style: italic;
+  color: rgb(75, 85, 99);
+  background-color: rgba(96, 165, 250, 0.05);
+  border-radius: 0 0.5rem 0.5rem 0;
+}
+
+.blog-form-editor .ProseMirror img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 0.5rem;
+  margin: 1rem 0;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+.blog-form-editor .ProseMirror a {
+  color: rgb(37, 99, 235);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.blog-form-editor .ProseMirror a:hover {
+  color: rgb(29, 78, 216);
+  text-decoration-color: rgb(96, 165, 250);
+}
+
+.blog-form-editor .ProseMirror ul,
+.blog-form-editor .ProseMirror ol {
+  margin: 1rem 0;
+  padding-left: 1.5rem;
+}
+
+.blog-form-editor .ProseMirror li {
+  margin: 0.5rem 0;
+  line-height: 1.625;
+}
+
+.blog-form-editor .ProseMirror ul li {
+  list-style-type: disc;
+}
+
+.blog-form-editor .ProseMirror ol li {
+  list-style-type: decimal;
+}
+
+.blog-form-editor .ProseMirror code {
+  background-color: rgb(243, 244, 246);
+  color: rgb(220, 38, 38);
+  padding: 0.125rem 0.25rem;
+  border-radius: 0.25rem;
+  font-size: 0.875em;
+}
+
+.blog-form-editor .ProseMirror pre {
+  background-color: rgb(31, 41, 55);
+  color: rgb(243, 244, 246);
+  padding: 1rem;
+  border-radius: 0.5rem;
+  margin: 1rem 0;
+  overflow-x: auto;
+}
+
+.blog-form-editor .ProseMirror pre code {
+  background-color: transparent;
+  color: inherit;
+  padding: 0;
+}
+
+/* Focus states */
+.blog-form-editor .ProseMirror:focus-within {
+  outline: none;
+}
+
+/* Selection styles */
+.blog-form-editor .ProseMirror ::selection {
+  background-color: rgba(37, 99, 235, 0.2);
+}
+
+/* Placeholder animation */
+.blog-form-editor .ProseMirror p.is-editor-empty:first-child::before {
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 0.5;
+  }
+  50% {
+    opacity: 0.3;
+  }
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .blog-form-bg-orb-1,
+  .blog-form-bg-orb-2 {
+    width: 15rem;
+    height: 15rem;
+  }
+  
+  .blog-form-bg-orb-3 {
+    width: 18rem;
+    height: 18rem;
+  }
+  
+  .blog-form-editor .ProseMirror {
+    font-size: 1rem;
+    padding: 0.75rem;
+  }
+}

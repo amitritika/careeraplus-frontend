@@ -15,6 +15,8 @@ type User = {
   email: string;
   role?: number;
   photo?: Photo;
+  id: string;
+  _id?: string;
 };
 
 type AuthState = {
