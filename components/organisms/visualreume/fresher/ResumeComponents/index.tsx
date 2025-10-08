@@ -1,0 +1,11 @@
+export {LayoutInfo,
+  UserInfo,
+  PersonalInfo,
+  ProfileSummaryInfo,
+  SkillsInfo,
+  EducationInfo,
+  ProjectsInfo,
+  WorkexpInfo,
+  AchievementsInfo,
+  HobbiesInfo,
+  AreaOfIntrestInfo} from './ResumeComponents';

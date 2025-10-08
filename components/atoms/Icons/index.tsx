@@ -27,4 +27,5 @@ EditIcon,
 BoldIcon,
   ItalicIcon,
   UnderlineIcon, LinkIcon, AlignCenterIcon, AlignLeftIcon, AlignRightIcon,
-  QuoteIcon }from './Icons';
+  QuoteIcon, AlertIcon, EyeSlashIcon, ArrowUpIcon, ArrowDownIcon, LayoutIcon,
+BookIcon, BriefcaseIcon, TargetIcon, DocumentIcon, CodeIcon }from './Icons';

@@ -1,0 +1,304 @@
+import React, { CSSProperties } from 'react';
+import parse from 'html-react-parser';
+import { FaCircle, FaCheck } from 'react-icons/fa';
+
+// Type definitions
+type ResumeType = 'fresher' | 'pro' | 'expert';
+type TemplateNumber = 1 | 2 | 3 | 4 | 5;
+
+interface BulletItemProps {
+    name: string;
+    height: number;
+    top: number;
+    line?: boolean | number;
+}
+
+interface BlockBulletProps {
+    resumeType?: ResumeType | string;
+    template?: TemplateNumber;
+    fac: number;
+    props: BulletItemProps;
+    bg: string;
+    font: string;
+    id?: string;
+    fontFamily?: string;
+}
+
+interface TemplateConfig {
+    left: string;
+    top1: string;
+    lineT?: string;
+    lineL?: string;
+    lineH?: string;
+    lineOp?: number;
+    lineW?: string;
+    size1?: string;
+    hasSmallDot?: boolean;
+    hasConnectingDot?: boolean;
+    hasVerticalLine?: boolean;
+    bulletBorderRadius?: string;
+    dotBorderRadius?: string;
+    bulletLeft?: string;
+    bulletTop?: string;
+    bulletColor?: string;
+    bulletSize?: string;
+    Icon: React.ComponentType<any>;
+}
+
+const BlockBullet: React.FC<BlockBulletProps> = ({
+    resumeType,
+    template,
+    props: itemProps,
+    bg,
+    font,
+    fontFamily,
+    id,
+    fac
+}) => {
+    // Common calculations - EXACTLY as in original files
+    const height: string = (fac * itemProps.height).toString() + "px";
+    const width: string = (fac * 183).toString() + "px";    
+    const name: string = itemProps.name;
+    const line: string = (fac * itemProps.height).toString() + "px";
+    const size: string = (fac * 3.2).toString() + "pt";
+    const top: string = (fac * itemProps.top).toString() + "px";
+    const height1: string = (fac * 2).toString() + "px";
+    const left1: string = (fac * -5.5).toString() + "px";
+
+    // EXACT configurations with all CSS properties from original files
+    const getTemplateConfig = (): TemplateConfig => {
+        const templateConfigs = {
+            // FRESHER TEMPLATES - Exact original styling
+            fresher: {
+                1: { // Simple rectangular bullet
+                    left: (fac * 17).toString() + "px",
+                    bulletTop: (fac * 1.5).toString() + "px",
+                    bulletLeft: (fac * -5.5).toString() + "px",
+                    bulletColor: bg,
+                    bulletSize: (fac * 2).toString() + "px",
+                    Icon: FaCircle
+                },
+                2: { // With small circular dot
+                    left: (fac * 17).toString() + "px",
+                    bulletTop: (fac * 1.5).toString() + "px",
+                    bulletLeft: (fac * -5.5).toString() + "px",
+                    bulletSize: (fac * 2).toString() + "px",
+                    lineH : (fac * (itemProps.height - 4)).toString() + "px",
+                    lineT : (fac * 6).toString() + "px",
+                    lineL : (fac * -5).toString() + "px",
+                    lineOp : itemProps.line,
+                    lineW : (fac * 0.5).toString() + "px",
+                    hasSmallDot: true,
+                    bulletColor: bg,
+                     hasVerticalLine: true,
+                    Icon: FaCircle
+                },
+                3: { // With connecting circular dot
+                    left: (fac * 17).toString() + "px", 
+                    bulletTop: (fac * 3).toString() + "px",
+                    bulletLeft: (fac * -5.5).toString() + "px",
+                    bulletSize: (fac * 2).toString() + "px",
+                    hasSmallDot: true,
+                    bulletColor: bg,
+                    Icon: FaCheck
+                },
+                4: { // With vertical line (upper)
+                    left: (fac * 17).toString() + "px",
+                    bulletTop: (fac * 3).toString() + "px",
+                    bulletLeft: (fac * -5.5).toString() + "px",
+                    bulletSize: (fac * 2).toString() + "px",
+                    hasSmallDot: true,
+                    bulletColor: bg,
+                    Icon: FaCircle
+                },
+                5: { // With vertical line (lower)
+                    left: (fac * 8).toString() + "px",
+                    bulletTop: (fac * 3).toString() + "px",
+                    bulletLeft: (fac * -5.5).toString() + "px",
+                    bulletSize: (fac * 2).toString() + "px",
+                    hasSmallDot: true,
+                    bulletColor: bg,
+                    Icon: FaCircle
+                }
+            },
+            // PRO TEMPLATES - Professional styling with some circular elements
+            pro: {
+                1: { // Simple rectangular bullet
+                    left: (fac * 17).toString() + "px",
+                    bulletTop: (fac * 1.5).toString() + "px",
+                    bulletLeft: (fac * -5.5).toString() + "px",
+                    bulletColor: bg,
+                    bulletSize: (fac * 2).toString() + "px",
+                    Icon: FaCircle
+                },
+                2: { // With small circular dot
+                    left: (fac * 17).toString() + "px",
+                    bulletTop: (fac * 1.5).toString() + "px",
+                    bulletLeft: (fac * -5.5).toString() + "px",
+                    bulletSize: (fac * 2).toString() + "px",
+                    lineH : (fac * (itemProps.height - 4)).toString() + "px",
+                    lineT : (fac * 6).toString() + "px",
+                    lineL : (fac * -5).toString() + "px",
+                    lineOp : itemProps.line,
+                    lineW : (fac * 0.5).toString() + "px",
+                    hasSmallDot: true,
+                    bulletColor: bg,
+                     hasVerticalLine: true,
+                    Icon: FaCircle
+                },
+                3: { // With connecting circular dot
+                    left: (fac * 17).toString() + "px", 
+                    bulletTop: (fac * 3).toString() + "px",
+                    bulletLeft: (fac * -5.5).toString() + "px",
+                    bulletSize: (fac * 2).toString() + "px",
+                    hasSmallDot: true,
+                    bulletColor: bg,
+                    Icon: FaCheck
+                },
+                4: { // With vertical line (upper)
+                    left: (fac * 17).toString() + "px",
+                    bulletTop: (fac * 3).toString() + "px",
+                    bulletLeft: (fac * -5.5).toString() + "px",
+                    bulletSize: (fac * 2).toString() + "px",
+                    hasSmallDot: true,
+                    bulletColor: bg,
+                    Icon: FaCircle
+                },
+                5: { // With vertical line (lower)
+                    left: (fac * 8).toString() + "px",
+                    bulletTop: (fac * 3).toString() + "px",
+                    bulletLeft: (fac * -5.5).toString() + "px",
+                    bulletSize: (fac * 2).toString() + "px",
+                    hasSmallDot: true,
+                    bulletColor: bg,
+                    Icon: FaCircle
+                }
+            },
+            // EXPERT TEMPLATES - Advanced styling with mixed elements
+            expert: {
+                1: { // Simple rectangular bullet
+                    left: (fac * 17).toString() + "px",
+                    bulletTop: (fac * 1.5).toString() + "px",
+                    bulletLeft: (fac * -5.5).toString() + "px",
+                    bulletColor: bg,
+                    bulletSize: (fac * 2).toString() + "px",
+                    Icon: FaCircle
+                },
+                2: { // With small circular dot
+                    left: (fac * 17).toString() + "px",
+                    bulletTop: (fac * 1.5).toString() + "px",
+                    bulletLeft: (fac * -5.5).toString() + "px",
+                    bulletSize: (fac * 2).toString() + "px",
+                    lineH : (fac * (itemProps.height - 4)).toString() + "px",
+                    lineT : (fac * 6).toString() + "px",
+                    lineL : (fac * -5).toString() + "px",
+                    lineOp : itemProps.line,
+                    lineW : (fac * 0.5).toString() + "px",
+                    hasSmallDot: true,
+                    bulletColor: bg,
+                     hasVerticalLine: true,
+                    Icon: FaCircle
+                },
+                3: { // With connecting circular dot
+                    left: (fac * 17).toString() + "px", 
+                    bulletTop: (fac * 3).toString() + "px",
+                    bulletLeft: (fac * -5.5).toString() + "px",
+                    bulletSize: (fac * 2).toString() + "px",
+                    hasSmallDot: true,
+                    bulletColor: bg,
+                    Icon: FaCheck
+                },
+                4: { // With vertical line (upper)
+                    left: (fac * 17).toString() + "px",
+                    bulletTop: (fac * 3).toString() + "px",
+                    bulletLeft: (fac * -5.5).toString() + "px",
+                    bulletSize: (fac * 2).toString() + "px",
+                    hasSmallDot: true,
+                    bulletColor: bg,
+                    Icon: FaCircle
+                },
+                5: { // With vertical line (lower)
+                    left: (fac * 8).toString() + "px",
+                    bulletTop: (fac * 3).toString() + "px",
+                    bulletLeft: (fac * -5.5).toString() + "px",
+                    bulletSize: (fac * 2).toString() + "px",
+                    hasSmallDot: true,
+                    bulletColor: bg,
+                    Icon: FaCircle
+                }
+            }
+        };
+
+        return templateConfigs[resumeType]?.[template] || templateConfigs.fresher[1];
+    };
+
+    const config: TemplateConfig = getTemplateConfig();
+
+    // Create exact inline styles with all original properties
+    const mainContainerStyle: CSSProperties = {
+        position: "absolute",
+        height,
+        width,
+        left: config.left,
+        top,
+        fontFamily: fontFamily || "sans-serif",
+        color: font,
+        fontSize: size,
+        textAlign: "left",
+    };
+
+    const bulletStyle: CSSProperties = {
+        position: "absolute",
+        fontSize: config.bulletSize || (fac * 2).toString() + "px",
+        color: config.bulletColor || bg,
+        left: config.bulletLeft || "0px",
+        top: config.bulletTop || "0px",
+    };
+
+    const textContainerStyle: CSSProperties = {
+        paddingLeft: "0px",
+        color: font,
+        fontWeight: "normal",
+        fontSize: size,
+        lineHeight: size
+    };
+
+    const dotStyle: CSSProperties = {
+        position: "absolute",
+        height: "2px",
+        width: "2px",
+        backgroundColor: bg,
+        left: config.lineL || "0px",
+        top: config.lineT || "0px",
+        borderRadius: config.dotBorderRadius || "0px" // Key property!
+    };
+
+    const verticalLineStyle: CSSProperties = {
+        position: "absolute",
+        height: config.lineH || "0px",
+        width: config.lineW || "0px",
+        backgroundColor: bg,
+        left: config.lineL || "0px",
+        top: config.lineT || "0px",
+    };
+
+    return (
+        <div style={mainContainerStyle} id={id}>
+            {/* Main bullet point with exact border-radius */}
+            <div style={bulletStyle}>
+                <config.Icon />
+            </div>
+            
+            {/* Vertical line */}
+            {config.hasVerticalLine && <div style={verticalLineStyle}></div>}
+            
+            {/* Text container */}
+            <div style={textContainerStyle}>
+                {parse(name)}
+            </div>
+        </div>
+    );
+};
+
+export default BlockBullet;
+export type { BlockBulletProps, BulletItemProps, ResumeType, TemplateNumber };
